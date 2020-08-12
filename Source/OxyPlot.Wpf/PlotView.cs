@@ -17,7 +17,8 @@ namespace OxyPlot.Wpf
     /// </summary>
     [TemplatePart(Name = PartGrid, Type = typeof(Grid))]
     public class PlotView : PlotBase
-    {
+    { 
+
         /// <summary>
         /// Identifies the <see cref="Controller"/> dependency property.
         /// </summary>
