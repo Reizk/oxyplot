@@ -156,9 +156,9 @@ namespace OxyPlot.Wpf
             {
                 if (this.currentModel != null)
                 {
-                    this.Model.Axes.CollectionChanged -= Model_AxesChanged;
-                    this.Model.Annotations.CollectionChanged -= Model_AnnotationsChanged;
-                    this.Model.Series.CollectionChanged -= Model_SeriesChanged;
+                    this.Model.Axes.ElementCollectionChanged -= Model_AxesChanged;
+                    this.Model.Annotations.ElementCollectionChanged -= Model_AnnotationsChanged;
+                    this.Model.Series.ElementCollectionChanged -= Model_SeriesChanged;
                     ((IPlotModel)this.currentModel).AttachPlotView(null);
                     this.currentModel = null;
                 }
@@ -167,9 +167,9 @@ namespace OxyPlot.Wpf
                 {
 
                     this.SynchronizeProperties();
-                    this.Model.Axes.CollectionChanged += Model_AxesChanged;
-                    this.Model.Annotations.CollectionChanged += Model_AnnotationsChanged;
-                    this.Model.Series.CollectionChanged += Model_SeriesChanged;
+                    this.Model.Axes.ElementCollectionChanged += Model_AxesChanged;
+                    this.Model.Annotations.ElementCollectionChanged += Model_AnnotationsChanged;
+                    this.Model.Series.ElementCollectionChanged += Model_SeriesChanged;
                     ((IPlotModel)this.Model).AttachPlotView(this);
                     this.currentModel = this.Model;
                 }

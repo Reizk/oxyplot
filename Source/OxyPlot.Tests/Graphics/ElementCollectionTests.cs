@@ -34,7 +34,7 @@ namespace OxyPlot.Tests.Graphics
                 ElementCollectionChangedEventArgs<Axis> eventArgs = null;
                 var raisedCount = 0;
 
-                collection.CollectionChanged += (sender, e) =>
+                collection.ElementCollectionChanged += (sender, e) =>
                 {
                     eventArgs = e;
                     raisedCount++;
@@ -70,7 +70,7 @@ namespace OxyPlot.Tests.Graphics
                 ElementCollectionChangedEventArgs<Axis> eventArgs = null;
                 var raisedCount = 0;
 
-                collection.CollectionChanged += (sender, e) =>
+                collection.ElementCollectionChanged += (sender, e) =>
                 {
                     eventArgs = e;
                     raisedCount++;
@@ -105,7 +105,7 @@ namespace OxyPlot.Tests.Graphics
                 ElementCollectionChangedEventArgs<Axis> eventArgs = null;
                 var raisedCount = 0;
 
-                collection.CollectionChanged += (sender, e) =>
+                collection.ElementCollectionChanged += (sender, e) =>
                 {
                     eventArgs = e;
                     raisedCount++;
@@ -139,7 +139,7 @@ namespace OxyPlot.Tests.Graphics
                 ElementCollectionChangedEventArgs<Axis> eventArgs = null;
                 var raisedCount = 0;
 
-                collection.CollectionChanged += (sender, e) =>
+                collection.ElementCollectionChanged += (sender, e) =>
                 {
                     eventArgs = e;
                     raisedCount++;
@@ -173,7 +173,7 @@ namespace OxyPlot.Tests.Graphics
                 ElementCollectionChangedEventArgs<Axis> eventArgs = null;
                 var raisedCount = 0;
 
-                collection.CollectionChanged += (sender, e) =>
+                collection.ElementCollectionChanged += (sender, e) =>
                 {
                     eventArgs = e;
                     raisedCount++;

@@ -218,7 +218,7 @@ namespace OxyPlot
         /// </summary>
         public PlotModel()
         {
-            this.Axes = new ElementCollection<Axis>(this);
+            Axes = new ElementCollection<Axis>(this);
             this.Series = new ElementCollection<Series.Series>(this);
             this.Annotations = new ElementCollection<Annotation>(this);
 

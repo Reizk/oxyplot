@@ -12,13 +12,20 @@ namespace OxyPlot
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
 
     /// <summary>
     /// Represents a collection of <see cref="Element" /> objects.
     /// </summary>
     /// <typeparam name="T">The type of the elements.</typeparam>
-    public class ElementCollection<T> : IList<T> where T : Element
+    public class ElementCollection<T> : INotifyCollectionChanged,IList<T> where T : Element
     {
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
         /// <summary>
         /// The parent <see cref="Model" />.
         /// </summary>
@@ -41,7 +48,7 @@ namespace OxyPlot
         /// <summary>
         /// Raised when the collection changes.
         /// </summary>
-        public event EventHandler<ElementCollectionChangedEventArgs<T>> CollectionChanged;
+        public event EventHandler<ElementCollectionChangedEventArgs<T>> ElementCollectionChanged;
 
         /// <summary>
         /// Gets the number of elements contained in the collection.
@@ -120,6 +127,11 @@ namespace OxyPlot
             this.internalList.Add(item);
 
             this.RaiseCollectionChanged(new[] { item });
+            if (CollectionChanged != null)
+            {
+                CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            }
+
         }
 
         /// <summary>
@@ -138,6 +150,10 @@ namespace OxyPlot
             this.internalList.Clear();
 
             this.RaiseCollectionChanged(removedItems: removedItems);
+            if (CollectionChanged != null)
+            {
+                CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            }
         }
 
         /// <summary>
@@ -172,9 +188,15 @@ namespace OxyPlot
             if (result)
             {
                 this.RaiseCollectionChanged(removedItems: new[] { item });
+                if (CollectionChanged != null)
+                {
+                    CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                }
             }
 
             return result;
+
+
         }
 
         /// <summary>
@@ -204,6 +226,10 @@ namespace OxyPlot
             this.internalList.Insert(index, item);
 
             this.RaiseCollectionChanged(new[] { item });
+            if (CollectionChanged != null)
+            {
+                CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            }
         }
 
         /// <summary>
@@ -218,6 +244,11 @@ namespace OxyPlot
             this.internalList.RemoveAt(index);
 
             this.RaiseCollectionChanged(removedItems: new[] { item });
+
+            if (CollectionChanged != null)
+            {
+                CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            }
         }
 
         /// <summary>
@@ -227,7 +258,7 @@ namespace OxyPlot
         /// <param name="removedItems">The removed items.</param>
         private void RaiseCollectionChanged(IEnumerable<T> addedItems = null, IEnumerable<T> removedItems = null)
         {
-            var collectionChanged = this.CollectionChanged;
+            var collectionChanged = this.ElementCollectionChanged;
             if (collectionChanged != null)
             {
                 collectionChanged(this, new ElementCollectionChangedEventArgs<T>(addedItems, removedItems));
