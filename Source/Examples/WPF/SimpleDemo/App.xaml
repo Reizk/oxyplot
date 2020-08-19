@@ -1,8 +1,44 @@
 ﻿<Application x:Class="SimpleDemo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SimpleDemo"
+             xmlns:oxy="http://oxyplot.org/wpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Style   TargetType="{x:Type oxy:PlotView}">
+            <Setter Property="Background" Value="#2C2C2C"/>
+            <Setter Property="TitleColor" Value="White"/>
+            <Setter Property="PlotAreaBorderColor" Value="#666666"/>
+            <Setter Property="AxislineColor" Value="#666666"/>
+            <Setter Property="AxislineStyle" Value="Solid"/>
+            <Setter Property="AxisTextColor" Value="#666666"/>
+            <Setter Property="AxisTicklineColor" Value="#666666"/>
+            <Setter Property="AxisTitleColor" Value="#666666"/>
+            <Setter Property="LegendTextColor" Value="White"></Setter>
+            <Setter Property="ContextMenu">
+                <Setter.Value>
+                    <ContextMenu  ItemsSource="{Binding Path=PlacementTarget.Model.Series,RelativeSource={RelativeSource Self } }"  >
+                        <ContextMenu.ItemContainerStyle>
+                            <Style TargetType="{x:Type MenuItem}" >
+                                <Setter Property="local:OxyPlotHelper.IsChecked" Value="{Binding IsVisible,Mode=OneWay}"></Setter>
+                                <Setter Property="IsChecked" Value="{Binding IsVisible,Mode=TwoWay}"></Setter>
+                                <Setter Property="Header" Value="{Binding Title}"/>
+                                <Setter Property="IsCheckable" Value="True"></Setter>
+                                <Setter Property="StaysOpenOnClick" Value="True"></Setter>
+                                <Setter Property="Tag" Value="{Binding PlacementTarget.Model,RelativeSource={RelativeSource AncestorType=ContextMenu,Mode=FindAncestor}}"/>
+                            </Style>
+                        </ContextMenu.ItemContainerStyle>
+                    </ContextMenu>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ZoomRectangleTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid Background="#7F686363"></Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
