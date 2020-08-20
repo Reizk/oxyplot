@@ -5,28 +5,31 @@
              xmlns:oxy="http://oxyplot.org/wpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-
+        <local:OxyPlotInvalidateConverter x:Key="OxyPlotInvalidateConverter"></local:OxyPlotInvalidateConverter>
+        <Style TargetType="oxy:TrackerControl">
+            <Setter Property="Background" Value="#7FFFFFFF"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="LineStroke" Value="Red"></Setter>
+        </Style>
         <Style   TargetType="{x:Type oxy:PlotView}">
-            <Setter Property="Background" Value="#2C2C2C"/>
-            <Setter Property="TitleColor" Value="White"/>
-            <Setter Property="PlotAreaBorderColor" Value="#666666"/>
-            <Setter Property="AxislineColor" Value="#666666"/>
-            <Setter Property="AxislineStyle" Value="Solid"/>
-            <Setter Property="AxisTextColor" Value="#666666"/>
-            <Setter Property="AxisTicklineColor" Value="#666666"/>
-            <Setter Property="AxisTitleColor" Value="#666666"/>
-            <Setter Property="LegendTextColor" Value="White"></Setter>
+          
             <Setter Property="ContextMenu">
                 <Setter.Value>
                     <ContextMenu  ItemsSource="{Binding Path=PlacementTarget.Model.Series,RelativeSource={RelativeSource Self } }"  >
                         <ContextMenu.ItemContainerStyle>
                             <Style TargetType="{x:Type MenuItem}" >
-                                <Setter Property="local:OxyPlotHelper.IsChecked" Value="{Binding IsVisible,Mode=OneWay}"></Setter>
+                                <Setter Property="local:OxyPlotHelper.IsChecked" >
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource OxyPlotInvalidateConverter}">
+                                            <Binding Path="IsVisible" Mode="OneWay"></Binding>
+                                            <Binding Path="PlacementTarget.Model" RelativeSource="{RelativeSource AncestorType=ContextMenu,Mode=FindAncestor}" Mode="OneWay"></Binding>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
                                 <Setter Property="IsChecked" Value="{Binding IsVisible,Mode=TwoWay}"></Setter>
                                 <Setter Property="Header" Value="{Binding Title}"/>
                                 <Setter Property="IsCheckable" Value="True"></Setter>
                                 <Setter Property="StaysOpenOnClick" Value="True"></Setter>
-                                <Setter Property="Tag" Value="{Binding PlacementTarget.Model,RelativeSource={RelativeSource AncestorType=ContextMenu,Mode=FindAncestor}}"/>
                             </Style>
                         </ContextMenu.ItemContainerStyle>
                     </ContextMenu>
