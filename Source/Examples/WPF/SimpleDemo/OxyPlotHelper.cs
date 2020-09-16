@@ -1,4 +1,5 @@
 ﻿using OxyPlot;
+using OxyPlot.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace SimpleDemo
 {
@@ -28,22 +30,8 @@ namespace SimpleDemo
 
         private static void IsCheckedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            //if (d != null && d is MenuItem)
-            //{
-            //    var mi = d as MenuItem;
-
-            //    if (mi.Tag != null && mi.Tag is PlotModel)
-            //    {
-            //        var plotModel = mi.Tag as PlotModel;
-            //        plotModel.InvalidatePlot(false);
-            //        plotModel.ResetAllAxes();
-            //    }
-
-            //}
         }
     }
-
-
 
     public class OxyPlotInvalidateConverter : IMultiValueConverter
     {
@@ -62,6 +50,26 @@ namespace SimpleDemo
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return new object[] { Binding.DoNothing, Binding.DoNothing };
+        }
+    }
+    public class OxyPlotColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value != null && value is OxyColor)
+            {
+                OxyColor color = (OxyColor)value;
+                return new SolidColorBrush(color.ToColor());
+            }
+            else
+            {
+                throw new Exception("value is invalid");
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 
