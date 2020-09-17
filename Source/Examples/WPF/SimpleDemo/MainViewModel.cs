@@ -35,7 +35,7 @@ namespace SimpleDemo
 
             for (int i = 0; i < 20; i++)
             {
-                var line = new LineSeries() {Title="Line"+i,Color=OxyColors.Red };
+                var line = new LineSeries() {Title="Line"+i,Color=OxyColors.Automatic };
                 line.Points.Add(new DataPoint(0+i, 0+i));
                 line.Points.Add(new DataPoint(10 + i, 18 + i));
                 line.Points.Add(new DataPoint(20 + i, 12 + i));

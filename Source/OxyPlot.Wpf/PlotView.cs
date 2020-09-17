@@ -949,19 +949,18 @@ namespace OxyPlot.Wpf
             new PropertyMetadata(
                 new[]
             {
-                Color.FromRgb(0x4E, 0x9A, 0x06),
-                    Color.FromRgb(0xC8, 0x8D, 0x00),
-                    Color.FromRgb(0xCC, 0x00, 0x00),
-                    Color.FromRgb(0x20, 0x4A, 0x87),
-                    Colors.Red,
-                    Colors.Orange,
-                    Colors.Yellow,
-                    Colors.Green,
-                    Colors.Blue,
-                    Colors.Indigo,
-                    Colors.Violet
-            },
-                    AppearanceChanged));
+                     OxyColor.Parse("#166cbd").ToColor(),
+                     OxyColor.Parse("#733bc0").ToColor(),
+                     OxyColor.Parse("#ce3f57").ToColor(),
+                     OxyColor.Parse("#d7af13").ToColor(),
+                     OxyColor.Parse("#2aa74f").ToColor(),
+                     OxyColor.Parse("#12a7a7").ToColor(),
+                     OxyColor.Parse("#ff00ff").ToColor(),
+                     OxyColor.Parse("#0000ff").ToColor(),
+                     OxyColor.Parse("#00ff00").ToColor(),
+                     OxyColor.Parse("#e60012").ToColor(),
+
+                },AppearanceChanged));
         /// <summary>
         /// Gets or sets the default colors.
         /// </summary>
