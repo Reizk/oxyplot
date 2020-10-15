@@ -21,9 +21,9 @@ namespace OxyPlot
         {
             this.BindMouseDown(OxyMouseButton.Left, OxyModifierKeys.Control, PlotCommands.ZoomRectangle);
             this.BindMouseDown(OxyMouseButton.Left, PlotCommands.PanAt);
-            this.BindMouseDown(OxyMouseButton.Right, PlotCommands.SnapTrack);
-            this.BindMouseDown(OxyMouseButton.Right, OxyModifierKeys.Control, PlotCommands.Track);
-            this.BindMouseDown(OxyMouseButton.Right, OxyModifierKeys.Shift, PlotCommands.PointsOnlyTrack);
+            this.BindMouseDown(OxyMouseButton.Middle, PlotCommands.SnapTrack);
+            this.BindMouseDown(OxyMouseButton.Middle, OxyModifierKeys.Control, PlotCommands.Track);
+            this.BindMouseDown(OxyMouseButton.Middle, OxyModifierKeys.Shift, PlotCommands.PointsOnlyTrack);
 
             this.BindCore(new OxyShakeGesture(), PlotCommands.Reset);
             this.BindMouseDown(OxyMouseButton.Left, OxyModifierKeys.None, 2, PlotCommands.ResetAt);
@@ -48,14 +48,14 @@ namespace OxyPlot
             //// Pan bindings: RMB / alt LMB / Up/down/left/right keys (panning direction on axis is opposite of key as it is more intuitive)
             //this.BindMouseDown(OxyMouseButton.Right, PlotCommands.PanAt);
             //this.BindMouseDown(OxyMouseButton.Left, OxyModifierKeys.Alt, PlotCommands.PanAt);
-            //this.BindKeyDown(OxyKey.Left, PlotCommands.PanLeft);
-            //this.BindKeyDown(OxyKey.Right, PlotCommands.PanRight);
-            //this.BindKeyDown(OxyKey.Up, PlotCommands.PanUp);
-            //this.BindKeyDown(OxyKey.Down, PlotCommands.PanDown);
-            //this.BindKeyDown(OxyKey.Left, OxyModifierKeys.Control, PlotCommands.PanLeftFine);
-            //this.BindKeyDown(OxyKey.Right, OxyModifierKeys.Control, PlotCommands.PanRightFine);
-            //this.BindKeyDown(OxyKey.Up, OxyModifierKeys.Control, PlotCommands.PanUpFine);
-            //this.BindKeyDown(OxyKey.Down, OxyModifierKeys.Control, PlotCommands.PanDownFine);
+            this.BindKeyDown(OxyKey.Left, PlotCommands.PanLeft);
+            this.BindKeyDown(OxyKey.Right, PlotCommands.PanRight);
+            this.BindKeyDown(OxyKey.Up, PlotCommands.PanUp);
+            this.BindKeyDown(OxyKey.Down, PlotCommands.PanDown);
+            this.BindKeyDown(OxyKey.Left, OxyModifierKeys.Control, PlotCommands.PanLeftFine);
+            this.BindKeyDown(OxyKey.Right, OxyModifierKeys.Control, PlotCommands.PanRightFine);
+            this.BindKeyDown(OxyKey.Up, OxyModifierKeys.Control, PlotCommands.PanUpFine);
+            this.BindKeyDown(OxyKey.Down, OxyModifierKeys.Control, PlotCommands.PanDownFine);
 
             //this.BindTouchDown(PlotCommands.PanZoomByTouch);
 
